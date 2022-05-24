@@ -93,11 +93,20 @@ void loop()
   {
     radio.read(&dataPacket, sizeof(dataPacket));
     PWM();
-    Btn(Btn1,dataPacket[5]);
-    Btn(Btn2,dataPacket[6]);
-    Btn(Btn3,dataPacket[7]);
-    Btn(Btn4,dataPacket[8]);
-    Btn(Btn5,dataPacket[9]);
+    if(dataPacket[5]==1){
+      digitalWrite(A1,HIGH);
+      Serial.println("on");
+    }
+    if(dataPacket[5]==0){
+      digitalWrite(A1,LOW);
+      Serial.println("off");
+    }
+
+    //Btn(Btn1,dataPacket[5]);
+    // Btn(Btn2,dataPacket[6]);
+    // Btn(Btn3,dataPacket[7]);
+    // Btn(Btn4,dataPacket[8]);
+    // Btn(Btn5,dataPacket[9]);
 
   }
   if (radio.available() == false)
